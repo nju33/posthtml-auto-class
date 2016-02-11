@@ -1,0 +1,23 @@
+{
+  "name": "posthtml-auto-class",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "chokidar index.js -c 'npm test'",
+    "test": "node test/build.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "lodash": "^4.3.0",
+    "lodash.assign": "^4.0.2",
+    "lodash.isobject": "^3.0.2",
+    "posthtml": "^0.8.2"
+  },
+  "devDependencies": {
+    "chokidar-cli": "^1.2.0",
+    "js-beautify": "^1.6.2"
+  }
+}
