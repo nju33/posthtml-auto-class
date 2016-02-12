@@ -23,8 +23,6 @@ function posthtmlAutoClass(opts) {
     _.assign(aliasNames, (opts.aliasNames || {}));
   }
 
-  if (opts.token != null) token = opts.token;
-
   return flow;
 
   function flow(tree) {
