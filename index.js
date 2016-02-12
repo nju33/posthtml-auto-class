@@ -3,34 +3,29 @@ const posthtml = require('posthtml');
 const _ = require('lodash');
 const Node = require('./lib/node');
 
-let token = '__';
-
-let scopeNames = [
-  'box'
-];
-
+let scopeNames = [];
 let aliasNames = {
-  ul: 'list',
-  li: 'item',
   a: 'link',
   img: 'img',
-  button: 'btn',
-  label: 'label',
-  input: 'input',
-  archive: 'archive',
-  main: 'main',
-  header: 'header',
-  footer: 'footer',
   hr: 'hr',
+  ul: 'list',
+  li: 'item',
   dl: 'list',
   dt: 'term',
   dd: 'desc',
-  progress: 'progress',
-  form: 'form',
-  select: 'select',
   code: 'code',
   pre: 'pre',
   blockquote: 'blockquote',
+  form: 'form',
+  label: 'label',
+  input: 'input',
+  select: 'select',
+  button: 'btn',
+  main: 'main',
+  archive: 'archive',
+  header: 'header',
+  footer: 'footer',
+  progress: 'progress',
 };
 
 module.exports = posthtmlAutoClass;
@@ -38,10 +33,10 @@ module.exports = posthtmlAutoClass;
 function posthtmlAutoClass(opts) {
   if (!opts) return flow;
 
-  if (opts.aliasName === false) {
-    scopeNames = {};
+  if (opts.scopeName === false) {
+    scopeNames = [];
   } else {
-    _.assign(scopeNames, (opts.scopeNames || {}));
+    scopeNames = (opts.scopeNames || []);
   }
 
   if (opts.aliasNames === false) {
@@ -64,12 +59,17 @@ function posthtmlAutoClass(opts) {
 
 function process(node, scope) {
   if (node.hasClass()) {
-    scope.name = node.hasScopeName(scopeNames) && node.scopeName;
+    if (node.hasScopeName(scopeNames)) {
+      console.log(node.scopeName);
+      console.log(node.scopeToken);
+      scope.name = node.scopeName;
+      scope.token = node.scopeToken;
+    }
   } else {
     if (aliasNames[node.tag]
         && node.autoClass
         && !node.hasScopeClass(scope.name)) {
-      node.classNames.push(`${scope.name}${token}${aliasNames[node.tag]}`)
+      node.classNames.push(`${scope.name}${scope.token}${aliasNames[node.tag]}`)
     }
   }
 

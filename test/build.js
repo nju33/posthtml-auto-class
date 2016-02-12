@@ -4,7 +4,7 @@ const beautify = require('js-beautify').html;
 const html = require('fs').readFileSync('./test/index.html', 'utf-8');
 
 posthtml([autoClass({
-  token: '__'
+  scopeNames: ['box', 'block']
 })])
   .process(html)
   .then((result) => {
