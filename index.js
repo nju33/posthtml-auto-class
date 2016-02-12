@@ -1,6 +1,7 @@
 'use strict';
 const posthtml = require('posthtml');
 const _ = require('lodash');
+const Node = require('./lib/node');
 
 let token = '__';
 
@@ -55,79 +56,30 @@ function posthtmlAutoClass(opts) {
 
   function flow(tree) {
     tree.match({tag: 'body'}, (node) => {
-      const result = process(node, {name: null});
+      const result = process(new Node(node), {name: null});
       return result;
     });
   };
 }
 
 function process(node, scope) {
-  if (hasClass(node)) {
-    scope.name = getScopeName(node);
+  if (node.hasClass()) {
+    scope.name = node.hasScopeName(scopeNames) && node.scopeName;
   } else {
-    if (aliasNames[node.tag]) {
-      if (!node.attrs) node.attrs = {};
-      if (node.attrs) {
-        if (!node.attrs.class) {
-          node.attrs.class = `${scope.name}${token}${aliasNames[node.tag]}`
-        }
-      }
+    if (aliasNames[node.tag] && !node.hasScopeClass(scope.name)) {
+      node.classNames.push(`${scope.name}${token}${aliasNames[node.tag]}`)
     }
   }
 
   if (node.content) {
     const result = node.content.map((child) => {
       if (_.isObject(child)) {
-        return process(child, scope);
+        const node = new Node(child);
+        return process(node, scope);
       } else {
         return child;
       }
     });
   }
-  return node;
-}
-
-function hasAlias(tagName) {
-  return aliasNames[tagName] ? aliasNames[tagName] : false;
-}
-
-function hasClass(node) {
-  if (node.attrs != null) {
-    if (node.attrs.class != null) return true;
-  }
-  return false;
-}
-
-function getClass(node) {
-  return node.attrs.class;
-}
-
-function getScopeName(node) {
-  const scopeName = getRelationClass(node);
-  return scopeName;
-}
-
-function getRelationClass(node) {
-  const classNames = node.attrs.class.split(/\s/);
-  let target = null
-  for (let className of classNames) {
-    for (let scopeName of scopeNames) {
-      const idx = className.indexOf(scopeName);
-      if (~idx) {
-        target = getScope(className, idx);
-        break;
-      }
-    }
-    if (target != null) break;
-  }
-  return target;
-
-  function getScope(className, idx) {
-    const prefix = className.slice(0, idx);
-    return trim(prefix);
-  }
-
-  function trim(str) {
-    return str.replace(/(?:-|__)$/, '');
-  }
+  return node.own;
 }

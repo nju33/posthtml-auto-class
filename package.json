@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "chokidar index.js -c 'npm test'",
+    "start": "chokidar 'index.js' 'lib/*.js' 'test/*' -c 'npm test'",
     "test": "node test/build.js"
   },
   "keywords": [],
