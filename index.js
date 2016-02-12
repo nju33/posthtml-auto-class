@@ -58,16 +58,20 @@ function posthtmlAutoClass(opts) {
 }
 
 function process(node, scope) {
+  scope.aliasNames = scope.aliasNames || _.clone(aliasNames);
+
   if (node.hasClass()) {
     if (node.hasScopeName(scopeNames)) {
       scope.name = node.scopeName;
       scope.token = node.scopeToken;
+      scope.aliasNames = _.assign(_.clone(scope.aliasNames), node.aliasNames);
     }
   } else {
-    if (aliasNames[node.tag]
+    if (scope.aliasNames[node.tag]
         && node.autoClass
         && !node.hasScopeClass(scope.name)) {
-      node.classNames.push(`${scope.name}${scope.token}${aliasNames[node.tag]}`)
+      const _name = `${scope.name}${scope.token}${scope.aliasNames[node.tag]}`
+      node.classNames.push(_name);
     }
   }
 
