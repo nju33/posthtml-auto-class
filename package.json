@@ -4,20 +4,20 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "chokidar 'index.js' 'lib/*.js' 'test/*' -c 'npm test'",
-    "test": "node test/build.js"
+    "start": "chokidar 'index.js' 'lib/*.js' 'test/*' -c 'mocha test/test.js'",
+    "test": "mocha test/test.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "lodash": "^4.3.0",
-    "lodash.assign": "^4.0.2",
-    "lodash.isobject": "^3.0.2",
     "posthtml": "^0.8.2"
   },
   "devDependencies": {
+    "chai": "^3.5.0",
     "chokidar-cli": "^1.2.0",
-    "js-beautify": "^1.6.2"
+    "js-beautify": "^1.6.2",
+    "mocha": "^2.4.5"
   }
 }
