@@ -60,8 +60,6 @@ function posthtmlAutoClass(opts) {
 function process(node, scope) {
   if (node.hasClass()) {
     if (node.hasScopeName(scopeNames)) {
-      console.log(node.scopeName);
-      console.log(node.scopeToken);
       scope.name = node.scopeName;
       scope.token = node.scopeToken;
     }
