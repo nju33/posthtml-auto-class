@@ -66,7 +66,9 @@ function process(node, scope) {
   if (node.hasClass()) {
     scope.name = node.hasScopeName(scopeNames) && node.scopeName;
   } else {
-    if (aliasNames[node.tag] && !node.hasScopeClass(scope.name)) {
+    if (aliasNames[node.tag]
+        && node.autoClass
+        && !node.hasScopeClass(scope.name)) {
       node.classNames.push(`${scope.name}${token}${aliasNames[node.tag]}`)
     }
   }
