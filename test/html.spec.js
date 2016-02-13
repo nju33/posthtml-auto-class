@@ -11,7 +11,7 @@ describe('result', () => {
   it('expect result html', () => {
     const result = posthtml([
       autoClass({
-        scopeNames: ['box'],
+        scopeNames: ['box', 'block'],
         aliasNames: {
           ul: 'list',
           li: 'item',

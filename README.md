@@ -45,31 +45,23 @@ posthtml([autoClass({
 ```html
 <!DOCTYPE html>
 <html lang="ja">
-<head>
-  <meta charset="UTF-8">
-  <title>Document</title>
-</head>
+<head></head>
 <body>
-
   <div>
-
     <ul class="foo__box">
       <li><a href="#"></a></li>
     </ul>
 
-    <ul class="foo2-block" ac-li="card">
+    <ul class="foo2-block foo3__box" ac-li="card">
       <li><a href="#"></a></li>
     </ul>
 
     <ul class="bar__box">
       <!-- when `auto-class` is `fasle`, doesn't add class  -->
-      <li auto-class="false">
-        <a href="#"></a>
-      <li>
+      <li auto-class="false"><a href="#"></a></li>
+      <li class="bar__item--already"></li>
     </ul>
-
   <div>
-
 </body>
 </html>
 
@@ -96,7 +88,7 @@ posthtml([autoClass({
       </li>
     </ul>
 
-    <ul class="foo2-block">
+    <ul class="foo2-block foo3__box">
       <li class="foo2-card">
         <a href="#" class="foo2-link"></a>
       </li>
@@ -107,8 +99,7 @@ posthtml([autoClass({
       <li>
         <a href="#" class="bar__link"></a>
       </li>
-      <li class="bar__card">
-      </li>
+      <li class="bar__item--already"></li>
     </ul>
 
     <div>
@@ -118,6 +109,7 @@ posthtml([autoClass({
 </body>
 
 </html>
+
 ```
 
 ## Options

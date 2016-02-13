@@ -33,6 +33,6 @@
   },
   "scripts": {
     "start": "chokidar 'index.js' 'lib/*.js' 'test/*' -c 'mocha test/*.spec.js'",
-    "test": "mocha test/test.js"
+    "test": "mocha test/*.spec.js"
   }
 }
