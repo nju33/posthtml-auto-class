@@ -1,4 +1,8 @@
-# Posthtml Auto Class
+# PostHTML Auto Class
+
+[![Build Status](https://travis-ci.org/totora0155/posthtml-auto-class.svg?branch=master)](https://travis-ci.org/totora0155/posthtml-auto-class)
+
+[PostHTML](https://github.com/posthtml/posthtml) plugin that attach a class attribute automatically
 
 ## Install
 

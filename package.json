@@ -1,15 +1,15 @@
 {
   "name": "posthtml-auto-class",
-  "version": "0.0.1",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "start": "chokidar 'index.js' 'lib/*.js' 'test/*' -c 'mocha test/*.spec.js'",
-    "test": "mocha test/test.js"
+  "description": "PostHTML plugin that attach a class attribute automatically",
+  "version": "0.1.0",
+  "author": {
+    "name": "nju33",
+    "email": "sski0155+npm@gmail.com",
+    "url": "http://www.nju33.work/"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/totora0155/posthtml-auto-class/issues"
+  },
   "dependencies": {
     "lodash": "^4.3.0",
     "posthtml": "^0.8.2"
@@ -19,5 +19,20 @@
     "chokidar-cli": "^1.2.0",
     "js-beautify": "^1.6.2",
     "mocha": "^2.4.5"
+  },
+  "homepage": "https://github.com/totora0155/posthtml-auto-class#readme",
+  "keywords": [
+    "class",
+    "posthtml"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:totora0155/posthtml-auto-class.git"
+  },
+  "scripts": {
+    "start": "chokidar 'index.js' 'lib/*.js' 'test/*' -c 'mocha test/*.spec.js'",
+    "test": "mocha test/test.js"
   }
 }
