@@ -1,6 +1,8 @@
 'use strict';
 
 const expect = require('chai').expect;
+const posthtml = require('posthtml');
+const html = require('fs').readFileSync('./test/index.html', 'utf-8');
 
 describe('Node instance', () => {
   const Node = require('../lib/node');

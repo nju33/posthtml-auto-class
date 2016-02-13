@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "chokidar 'index.js' 'lib/*.js' 'test/*' -c 'mocha test/test.js'",
+    "start": "chokidar 'index.js' 'lib/*.js' 'test/*' -c 'mocha test/*.spec.js'",
     "test": "mocha test/test.js"
   },
   "keywords": [],

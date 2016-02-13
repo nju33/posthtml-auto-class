@@ -27,15 +27,17 @@ function posthtmlAutoClass(opts) {
 
   function flow(tree) {
     tree.match({tag: 'body'}, (node) => {
-      const result = process(new Node(node), {name: null});
+      const result = process(new Node(node), {
+        name: null,
+        token: null,
+        aliasNames: _.clone(aliasNames),
+      });
       return result;
     });
   };
 }
 
 function process(node, scope) {
-  scope.aliasNames = scope.aliasNames || _.clone(aliasNames);
-
   if (node.hasClass()) {
     if (node.hasScopeName(scopeNames)) {
       scope.name = node.scopeName;
